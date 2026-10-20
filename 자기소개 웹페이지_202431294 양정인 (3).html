@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>양정인 — 포트폴리오</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Pretendard Font -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        deck: {
+                            bg: '#EBE6DF',
+                            card: '#FFFFFF',
+                            panel: '#F8F6F2',
+                            border: '#C0B7A8',
+                            text: '#1E1C1A',
+                            muted: '#6B645A',
+                            accent: '#C84A2B',
+                            accentDark: '#F06A4B',
+                            darkBg: '#121110',
+                            darkCard: '#1C1B1A',
+                            darkBorder: '#383430',
+                            darkMuted: '#A39B8F',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 커스텀 스크롤바 */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EBE6DF;
+        }
+        .dark ::-webkit-scrollbar-track {
+            background: #121110;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A09688;
+            border-radius: 2px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C84A2B;
+        }
+
+        /* 명확한 카드 가독성 스타일링 */
+        .editorial-deck-card {
+            background-color: #FFFFFF;
+            border: 1.5px solid #C0B7A8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            transition: all 0.25s ease-in-out;
+        }
+        .dark .editorial-deck-card {
+            background-color: #1C1B1A;
+            border: 1.5px solid #383430;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .editorial-deck-card:hover {
+            border-color: #C84A2B;
+            box-shadow: 0 4px 16px rgba(200, 74, 43, 0.12);
+        }
+        .dark .editorial-deck-card:hover {
+            border-color: #F06A4B;
+            box-shadow: 0 4px 16px rgba(240, 106, 75, 0.15);
+        }
+
+        /* 격자 배경 패턴 */
+        .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(30, 28, 26, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(30, 28, 26, 0.05) 1px, transparent 1px);
+        }
+        .dark .bg-grid-pattern {
+            background-size: 32px 32px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        }
+    </style>
+</head>
+<body class="bg-[#EBE6DF] dark:bg-[#121110] text-[#1E1C1A] dark:text-[#EBE6DF] font-sans antialiased min-h-screen transition-colors duration-300">
+
+    <!-- 배경 그리드 패턴 -->
+    <div class="fixed inset-0 pointer-events-none z-0 bg-grid-pattern"></div>
+
+    <!-- 상단 네비게이션 헤더 -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-[#EBE6DF]/90 dark:bg-[#121110]/90 border-b-2 border-[#C0B7A8] dark:border-[#383430] transition-colors">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <span class="text-xs font-bold tracking-widest bg-[#C84A2B] text-white dark:bg-[#F06A4B] dark:text-black px-2 py-0.5 rounded-sm">2026</span>
+                <span class="text-base font-extrabold tracking-wider text-[#1E1C1A] dark:text-[#EBE6DF]">양정인 포트폴리오</span>
+            </a>
+            
+            <!-- 한글 네비게이션 메뉴 -->
+            <nav class="hidden md:flex items-center gap-6 text-xs font-bold tracking-wider text-[#6B645A] dark:text-[#A39B8F]">
+                <a href="#about" class="hover:text-[#C84A2B] dark:hover:text-[#F06A4B] transition-colors">01. 소개 & 가치관</a>
+                <a href="#skills" class="hover:text-[#C84A2B] dark:hover:text-[#F06A4B] transition-colors">02. 핵심 역량</a>
+                <a href="#experience" class="hover:text-[#C84A2B] dark:hover:text-[#F06A4B] transition-colors">03. 학력 및 경험</a>
+                <a href="#projects" class="hover:text-[#C84A2B] dark:hover:text-[#F06A4B] transition-colors">04. 주요 프로젝트</a>
+                <a href="#contact" class="hover:text-[#C84A2B] dark:hover:text-[#F06A4B] transition-colors">05. 문의 & 방명록</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <!-- 다크모드 토글 버튼 -->
+                <button id="theme-toggle" type="button" aria-label="테마 전환"
+                    class="p-2.5 border-2 border-[#C0B7A8] dark:border-[#383430] bg-white dark:bg-[#1C1B1A] hover:border-[#C84A2B] dark:hover:border-[#F06A4B] transition-all">
+                    <svg id="theme-toggle-light-icon" class="hidden w-4 h-4 text-amber-500" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                    </svg>
+                    <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                </button>
+
+                <button onclick="copyEmail()" class="hidden sm:inline-block px-4 py-2 border-2 border-[#C84A2B] dark:border-[#F06A4B] text-[#C84A2B] dark:text-[#F06A4B] font-bold text-xs hover:bg-[#C84A2B] hover:text-white dark:hover:bg-[#F06A4B] dark:hover:text-black transition-all">
+                    이메일 복사
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-6xl mx-auto px-6 md:px-12 py-12 space-y-20">
+
+        <!-- 섹션 01: 자기소개 & 핵심 가치관 -->
+        <section id="about" class="pt-4 deck-section" data-slide="01">
+            <!-- 구분 헤더 라인 -->
+            <div class="border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-3 mb-8 flex justify-between items-center">
+                <span class="text-xs font-bold tracking-widest text-[#C84A2B] dark:text-[#F06A4B] bg-[#C84A2B]/10 dark:bg-[#F06A4B]/15 px-3 py-1 rounded">01. 소개 & 가치관</span>
+                <span class="text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">가천대학교 경영학과</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+                
+                <!-- 메인 한글 타이틀 및 설명 -->
+                <div class="lg:col-span-8 space-y-6">
+                    <div class="space-y-3">
+                        <span class="text-xs font-extrabold tracking-widest text-[#C84A2B] dark:text-[#F06A4B] uppercase">기획 및 비주얼 디자인</span>
+                        <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-snug text-[#1E1C1A] dark:text-[#F8F6F2]">
+                            통찰력 있는 기획,<br>
+                            <span class="text-[#C84A2B] dark:text-[#F06A4B] underline decoration-4 underline-offset-8">명확한 시각적 전달.</span>
+                        </h1>
+                    </div>
+
+                    <p class="text-base md:text-lg text-[#3A3632] dark:text-[#D5CDC2] font-normal leading-relaxed max-w-2xl bg-white/60 dark:bg-[#1C1B1A]/60 p-5 border-l-4 border-[#C84A2B] dark:border-[#F06A4B]">
+                        경영학적 기획 논리와 절제된 비주얼 디자인 감각을 결합하여 메시지의 본질을 가치 있게 전달합니다. 가천대학교 경영학과 <strong class="text-[#1E1C1A] dark:text-white font-extrabold bg-[#C84A2B]/15 dark:bg-[#F06A4B]/20 px-1.5 py-0.5">양정인</strong>입니다.
+                    </p>
+
+                    <!-- 핵심 요약 정보 카드 그리드 -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+                        <div class="editorial-deck-card p-5 space-y-2">
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">01 / 학력 정보</span>
+                            <p class="text-sm font-bold text-[#1E1C1A] dark:text-white">가천대학교 경영학과 재학</p>
+                            <p class="text-xs text-[#6B645A] dark:text-[#A39B8F]">2024년 3월 입학 ~ 현재</p>
+                        </div>
+                        <div class="editorial-deck-card p-5 space-y-2">
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">02 / 보유 역량</span>
+                            <p class="text-sm font-bold text-[#1E1C1A] dark:text-white">PPT 발표 기획 · 포토샵 · 문서 작성</p>
+                            <p class="text-xs text-[#6B645A] dark:text-[#A39B8F]">시각화 및 콘텐츠 기획 총괄 가능</p>
+                        </div>
+                    </div>
+
+                    <blockquote class="italic text-sm text-[#6B645A] dark:text-[#A39B8F] border-l-2 border-[#C0B7A8] dark:border-[#383430] pl-4 py-1">
+                        "명확한 프레임워크 속에 정제된 비주얼을 담아 설득력을 더합니다."
+                    </blockquote>
+                </div>
+
+                <!-- 프로필 사진 영역 -->
+                <div class="lg:col-span-4 flex flex-col items-center lg:items-end">
+                    <div class="w-full max-w-xs editorial-deck-card p-3 relative group cursor-pointer" onclick="document.getElementById('profile-upload').click()">
+                        <div class="w-full aspect-[4/5] bg-[#121110] overflow-hidden relative flex items-center justify-center border border-[#C0B7A8] dark:border-[#383430]">
+                            <img id="profile-img" src="증명사진.jpg" alt="양정인 프로필 사진" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.style.display='none'; document.getElementById('profile-fallback').classList.remove('hidden');">
+                            
+                            <!-- 사진 대체안 구획 -->
+                            <div id="profile-fallback" class="hidden w-full h-full flex flex-col items-center justify-center p-6 text-center bg-[#F8F6F2] dark:bg-[#1C1B1A]">
+                                <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B] mb-2">프로필 사진</span>
+                                <span class="text-lg font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2]">양정인</span>
+                                <span class="text-xs text-[#6B645A] dark:text-[#A39B8F] mt-4 bg-white dark:bg-[#121110] px-3 py-1.5 border border-[#C0B7A8] dark:border-[#383430]">📷 클릭하여 사진 등록</span>
+                            </div>
+
+                            <!-- 호버 안내 -->
+                            <div class="absolute inset-0 bg-[#C84A2B]/85 dark:bg-[#F06A4B]/85 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white dark:text-black font-bold text-xs gap-2">
+                                <span>[ 클릭하여 사진 변경 ]</span>
+                            </div>
+                        </div>
+                        <div class="mt-3 flex justify-between items-center text-xs font-bold">
+                            <span class="text-[#6B645A] dark:text-[#A39B8F]">프로필 / 양정인</span>
+                            <span class="text-[#C84A2B] dark:text-[#F06A4B]">[ 사진 ]</span>
+                        </div>
+                        <input type="file" id="profile-upload" accept="image/*" class="hidden" onchange="previewProfileImage(event)">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 주요 지표 수치 요약 -->
+        <section class="editorial-deck-card p-6 md:p-8 bg-white dark:bg-[#1C1B1A]">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-x-0 md:divide-x-2 divide-[#C0B7A8] dark:divide-[#383430]">
+                <div class="space-y-1">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#C84A2B] dark:text-[#F06A4B]">03개</span>
+                    <p class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">주요 진행 프로젝트</p>
+                </div>
+                <div class="space-y-1">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2]">02개</span>
+                    <p class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">유튜브 채널 운영</p>
+                </div>
+                <div class="space-y-1">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#C84A2B] dark:text-[#F06A4B]">100%</span>
+                    <p class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">기획 및 디자인 총괄</p>
+                </div>
+                <div class="space-y-1">
+                    <span class="text-3xl md:text-4xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2]">2026</span>
+                    <p class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">포트폴리오 개정년도</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 02: 핵심 역량 -->
+        <section id="skills" class="space-y-6 deck-section" data-slide="02">
+            <div class="border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-3 flex justify-between items-center">
+                <span class="text-xs font-bold tracking-widest text-[#C84A2B] dark:text-[#F06A4B] bg-[#C84A2B]/10 dark:bg-[#F06A4B]/15 px-3 py-1 rounded">02. 핵심 역량</span>
+                <span class="text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">보유 기술 및 도구</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- 역량 영역 1 -->
+                <div class="editorial-deck-card p-6 md:p-8 space-y-5">
+                    <div class="flex justify-between items-start border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-4">
+                        <div>
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">영역 01</span>
+                            <h3 class="text-xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] mt-1">비주얼 & 디자인 제작</h3>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-[#C84A2B]/15 text-[#C84A2B] dark:bg-[#F06A4B]/20 dark:text-[#F06A4B]">시각화</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-[#3A3632] dark:text-[#D5CDC2]">
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-1.5 bg-[#C84A2B] dark:bg-[#F06A4B] shrink-0"></span>
+                            <div>
+                                <strong class="text-[#1E1C1A] dark:text-white font-bold">포토샵 (Photoshop):</strong> 그래픽 리터칭, 이미지 합성 및 콘텐츠 에셋 가공
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-1.5 bg-[#C84A2B] dark:bg-[#F06A4B] shrink-0"></span>
+                            <div>
+                                <strong class="text-[#1E1C1A] dark:text-white font-bold">PPT 프레젠테이션 디자인:</strong> 가독성 높은 슬라이드 구조화 및 발표 템플릿 제작
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-1.5 bg-[#C84A2B] dark:bg-[#F06A4B] shrink-0"></span>
+                            <div>
+                                <strong class="text-[#1E1C1A] dark:text-white font-bold">홍보 콘텐츠 제작:</strong> 카드뉴스, 썸네일, 포스터 비주얼 디자인
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 역량 영역 2 -->
+                <div class="editorial-deck-card p-6 md:p-8 space-y-5">
+                    <div class="flex justify-between items-start border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-4">
+                        <div>
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">영역 02</span>
+                            <h3 class="text-xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] mt-1">기획 & 문서 작성</h3>
+                        </div>
+                        <span class="text-xs font-bold px-2.5 py-1 bg-[#C84A2B]/15 text-[#C84A2B] dark:bg-[#F06A4B]/20 dark:text-[#F06A4B]">경영 기획</span>
+                    </div>
+                    <ul class="space-y-3 text-sm text-[#3A3632] dark:text-[#D5CDC2]">
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-1.5 bg-[#C84A2B] dark:bg-[#F06A4B] shrink-0"></span>
+                            <div>
+                                <strong class="text-[#1E1C1A] dark:text-white font-bold">문서 작성 (MS Office / HWP):</strong> 체계적인 보고서 및 서식 정리
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-1.5 bg-[#C84A2B] dark:bg-[#F06A4B] shrink-0"></span>
+                            <div>
+                                <strong class="text-[#1E1C1A] dark:text-white font-bold">마케팅 전략 수립:</strong> 시장 분석, 타겟 분석 및 세일즈 기획
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-2 h-2 mt-1.5 bg-[#C84A2B] dark:bg-[#F06A4B] shrink-0"></span>
+                            <div>
+                                <strong class="text-[#1E1C1A] dark:text-white font-bold">자료 구조화 & 요약:</strong> 핵심 논리 도출 및 프로젝트 리포팅
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 03: 학력 및 경험 -->
+        <section id="experience" class="space-y-6 deck-section" data-slide="03">
+            <div class="border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-3 flex justify-between items-center">
+                <span class="text-xs font-bold tracking-widest text-[#C84A2B] dark:text-[#F06A4B] bg-[#C84A2B]/10 dark:bg-[#F06A4B]/15 px-3 py-1 rounded">03. 학력 및 경험</span>
+                <span class="text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">타임라인</span>
+            </div>
+
+            <div class="space-y-4">
+                <!-- 타임라인 1 -->
+                <div class="editorial-deck-card p-6 md:p-8 border-l-8 border-l-[#C84A2B] dark:border-l-[#F06A4B]">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#C0B7A8] dark:border-[#383430] pb-3 mb-4 gap-2">
+                        <div>
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">학력</span>
+                            <h3 class="text-xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2]">가천대학교 경영학과</h3>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 bg-[#C84A2B] text-white dark:bg-[#F06A4B] dark:text-black self-start sm:self-auto">2024.03 ~ 재학 중</span>
+                    </div>
+                    <ul class="text-sm text-[#3A3632] dark:text-[#D5CDC2] space-y-2 list-disc list-inside font-normal">
+                        <li>경영학 원론, 마케팅 전략, 조직행동론 등 전공 핵심 과목 이수</li>
+                        <li>팀 프로젝트 내 <strong class="font-bold text-[#C84A2B] dark:text-[#F06A4B]">프레젠테이션 디자인 총괄 및 최종 보고서 작성 리드</strong></li>
+                    </ul>
+                </div>
+
+                <!-- 타임라인 2 -->
+                <div class="editorial-deck-card p-6 md:p-8">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#C0B7A8] dark:border-[#383430] pb-3 mb-4 gap-2">
+                        <div>
+                            <span class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">활동 & 프로젝트</span>
+                            <h3 class="text-xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2]">비주얼 콘텐츠 제작 및 마케팅 연구</h3>
+                        </div>
+                        <span class="text-xs font-bold px-3 py-1 border border-[#C84A2B] text-[#C84A2B] dark:border-[#F06A4B] dark:text-[#F06A4B] self-start sm:self-auto">2024.03 ~ 현재</span>
+                    </div>
+                    <ul class="text-sm text-[#3A3632] dark:text-[#D5CDC2] space-y-2 list-disc list-inside font-normal">
+                        <li>포토샵 기반 홍보물, 카드뉴스, 유튜브 썸네일 브랜딩 에셋 제작</li>
+                        <li>정보 시각화와 레이아웃 구조화를 통한 프레젠테이션 전달력 극대화 연구</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 04: 주요 프로젝트 -->
+        <section id="projects" class="space-y-6 deck-section" data-slide="04">
+            <div class="border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-3 flex justify-between items-center">
+                <span class="text-xs font-bold tracking-widest text-[#C84A2B] dark:text-[#F06A4B] bg-[#C84A2B]/10 dark:bg-[#F06A4B]/15 px-3 py-1 rounded">04. 주요 프로젝트</span>
+                <span class="text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">클릭하여 상세보기</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 프로젝트 1: Nullo -->
+                <div onclick="openProjectModal('nullo')" class="editorial-deck-card p-6 flex flex-col justify-between space-y-5 hover:border-[#C84A2B] dark:hover:border-[#F06A4B] cursor-pointer group">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-[#C0B7A8] dark:border-[#383430] pb-2">
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">프로젝트 01</span>
+                            <span class="text-xs font-bold px-2 py-0.5 bg-[#C84A2B] text-white dark:bg-[#F06A4B] dark:text-black">브랜딩</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] group-hover:text-[#C84A2B] dark:group-hover:text-[#F06A4B] transition-colors leading-snug">
+                            가상 브랜드 'Nullo'<br>마케팅 전략 & 광고 영상
+                        </h3>
+                        <p class="text-xs text-[#6B645A] dark:text-[#A39B8F] leading-relaxed">
+                            가상 브랜드 Nullo의 타겟 분석 및 브랜딩 기획부터 메인 광고 영상 연출, 수립 및 최종 제작까지 총괄 진행.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-[#C0B7A8] dark:border-[#383430] flex justify-between items-center text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">
+                        <span>#전략기획 #영상제작</span>
+                        <span class="group-hover:translate-x-1 transition-transform">자세히 보기 ↗</span>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 2: 유튜브 채널 -->
+                <div onclick="openProjectModal('youtube')" class="editorial-deck-card p-6 flex flex-col justify-between space-y-5 hover:border-[#C84A2B] dark:hover:border-[#F06A4B] cursor-pointer group">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-[#C0B7A8] dark:border-[#383430] pb-2">
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">프로젝트 02</span>
+                            <span class="text-xs font-bold px-2 py-0.5 border border-[#C84A2B] text-[#C84A2B] dark:border-[#F06A4B] dark:text-[#F06A4B]">미디어</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] group-hover:text-[#C84A2B] dark:group-hover:text-[#F06A4B] transition-colors leading-snug">
+                            유튜브 채널 운영<br>('핫식스자판기' & 'J:Sight')
+                        </h3>
+                        <p class="text-xs text-[#6B645A] dark:text-[#A39B8F] leading-relaxed">
+                            정보성 팀 채널 <strong class="text-[#C84A2B] dark:text-[#F06A4B]">'핫식스자판기'</strong>와 개인 인사이트 채널 <strong class="text-[#C84A2B] dark:text-[#F06A4B]">'J:Sight'</strong> 운영 및 콘텐츠 기획.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-[#C0B7A8] dark:border-[#383430] flex justify-between items-center text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">
+                        <span>#유튜브 #콘텐츠유통</span>
+                        <span class="group-hover:translate-x-1 transition-transform">자세히 보기 ↗</span>
+                    </div>
+                </div>
+
+                <!-- 프로젝트 3: 라이브 커머스 -->
+                <div onclick="openProjectModal('commerce')" class="editorial-deck-card p-6 flex flex-col justify-between space-y-5 hover:border-[#C84A2B] dark:hover:border-[#F06A4B] cursor-pointer group">
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center border-b border-[#C0B7A8] dark:border-[#383430] pb-2">
+                            <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">프로젝트 03</span>
+                            <span class="text-xs font-bold px-2 py-0.5 bg-[#C84A2B] text-white dark:bg-[#F06A4B] dark:text-black">커머스</span>
+                        </div>
+                        <h3 class="text-lg font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] group-hover:text-[#C84A2B] dark:group-hover:text-[#F06A4B] transition-colors leading-snug">
+                            롯데홈쇼핑 엘라이브 대학대전<br>(P-프로젝트)
+                        </h3>
+                        <p class="text-xs text-[#6B645A] dark:text-[#A39B8F] leading-relaxed">
+                            가천대학교 P-프로젝트 연계 실전 모바일 라이브 커머스. 롯데홈쇼핑 '엘라이브' 방송 기획 및 세일즈 포인트 발굴 진행 중.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-[#C0B7A8] dark:border-[#383430] flex justify-between items-center text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">
+                        <span>#엘라이브 #진행중</span>
+                        <span class="group-hover:translate-x-1 transition-transform">자세히 보기 ↗</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 섹션 05: 문의 및 방명록 -->
+        <section id="contact" class="space-y-6 deck-section" data-slide="05">
+            <div class="border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-3 flex justify-between items-center">
+                <span class="text-xs font-bold tracking-widest text-[#C84A2B] dark:text-[#F06A4B] bg-[#C84A2B]/10 dark:bg-[#F06A4B]/15 px-3 py-1 rounded">05. 문의 & 방명록</span>
+                <span class="text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">연락처 및 방명록</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                <!-- 좌측 연락처 안내 -->
+                <div class="md:col-span-5 space-y-4">
+                    <p class="text-sm text-[#3A3632] dark:text-[#D5CDC2] leading-relaxed bg-white/60 dark:bg-[#1C1B1A]/60 p-4 border border-[#C0B7A8] dark:border-[#383430]">
+                        프로젝트 협업, 스터디 문의, 다양한 제안이나 응원의 메시지가 있으시다면 아래 이메일 또는 메시지 폼을 통해 남겨주세요.
+                    </p>
+
+                    <div class="space-y-3">
+                        <div onclick="copyEmail()" class="cursor-pointer p-4 editorial-deck-card group border-l-4 border-l-[#C84A2B] dark:border-l-[#F06A4B]">
+                            <div class="flex justify-between items-center text-xs font-bold">
+                                <span class="text-[#C84A2B] dark:text-[#F06A4B]">가천대학교 공식 이메일</span>
+                                <span class="text-[#6B645A] dark:text-[#A39B8F] group-hover:text-[#C84A2B]">[ 클릭하여 복사 ]</span>
+                            </div>
+                            <div class="text-base font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] group-hover:text-[#C84A2B] dark:group-hover:text-[#F06A4B] transition-colors mt-1">
+                                yjiji0926@gachon.ac.kr
+                            </div>
+                        </div>
+
+                        <div class="p-4 editorial-deck-card">
+                            <span class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">소속 및 위치</span>
+                            <div class="text-sm font-bold text-[#1E1C1A] dark:text-[#F8F6F2] mt-1">대한민국, 가천대학교 경영학과</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 우측 방명록 메시지 폼 -->
+                <div class="md:col-span-7 editorial-deck-card p-6 sm:p-8">
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-1.5">
+                                <label for="name" class="text-xs font-bold text-[#1E1C1A] dark:text-[#F8F6F2]">성함 / 닉네임 *</label>
+                                <input type="text" id="name" name="name" placeholder="성함 또는 닉네임 입력" required
+                                    class="w-full px-3.5 py-2.5 bg-[#F8F6F2] dark:bg-[#121110] border border-[#C0B7A8] dark:border-[#383430] text-[#1E1C1A] dark:text-[#F8F6F2] text-xs focus:outline-none focus:border-[#C84A2B] dark:focus:border-[#F06A4B]">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="email" class="text-xs font-bold text-[#1E1C1A] dark:text-[#F8F6F2]">이메일 주소 (선택)</label>
+                                <input type="email" id="email" name="email" placeholder="답장받으실 이메일"
+                                    class="w-full px-3.5 py-2.5 bg-[#F8F6F2] dark:bg-[#121110] border border-[#C0B7A8] dark:border-[#383430] text-[#1E1C1A] dark:text-[#F8F6F2] text-xs focus:outline-none focus:border-[#C84A2B] dark:focus:border-[#F06A4B]">
+                            </div>
+                        </div>
+
+                        <div class="space-y-1.5">
+                            <label for="message" class="text-xs font-bold text-[#1E1C1A] dark:text-[#F8F6F2]">메시지 내용 *</label>
+                            <textarea id="message" name="message" rows="3" placeholder="양정인 님에게 남기실 메시지를 자유롭게 작성해주세요." required
+                                class="w-full px-3.5 py-2.5 bg-[#F8F6F2] dark:bg-[#121110] border border-[#C0B7A8] dark:border-[#383430] text-[#1E1C1A] dark:text-[#F8F6F2] text-xs focus:outline-none focus:border-[#C84A2B] dark:focus:border-[#F06A4B] resize-none"></textarea>
+                        </div>
+
+                        <div class="flex justify-end gap-3 pt-2">
+                            <button type="reset" class="px-4 py-2 border border-[#C0B7A8] dark:border-[#383430] text-xs font-bold hover:bg-[#1E1C1A] hover:text-white dark:hover:bg-white dark:hover:text-black transition-all">
+                                다시 작성
+                            </button>
+                            <button type="submit" class="px-6 py-2 bg-[#C84A2B] text-white dark:bg-[#F06A4B] dark:text-black text-xs font-extrabold hover:opacity-90 transition-all shadow-sm">
+                                메시지 남기기
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- 방명록 목록 -->
+            <div class="pt-6 border-t-2 border-[#C0B7A8] dark:border-[#383430] space-y-4">
+                <div class="flex justify-between items-center">
+                    <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">최근 방명록 메시지</span>
+                    <span id="guestbook-count" class="text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">0개의 메시지</span>
+                </div>
+                <div id="guestbook-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- 방명록 동적 렌더링 영역 -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 프로젝트 상세 모달 -->
+    <div id="project-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="editorial-deck-card w-full max-w-2xl max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative space-y-5 border-2 border-[#C84A2B] dark:border-[#F06A4B] shadow-2xl">
+            <!-- 모달 닫기 버튼 -->
+            <button onclick="closeProjectModal()" class="absolute top-6 right-6 font-bold text-xs hover:text-[#C84A2B] dark:hover:text-[#F06A4B]">
+                [ 닫기 ✕ ]
+            </button>
+
+            <div id="modal-content" class="space-y-5">
+                <!-- 자바스크립트로 내역 삽입 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 알림 토스트 팝업 -->
+    <div id="toast-container" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none">
+        <div id="toast" class="hidden opacity-0 translate-y-2 transition-all duration-300 px-6 py-3 bg-[#1E1C1A] text-white dark:bg-[#F8F6F2] dark:text-black border-2 border-[#C84A2B] dark:border-[#F06A4B] text-xs font-bold tracking-wider shadow-lg flex items-center gap-3">
+            <span class="w-2 h-2 bg-[#C84A2B] dark:bg-[#F06A4B] rounded-full animate-ping"></span>
+            <span id="toast-message">알림 메시지</span>
+        </div>
+    </div>
+
+    <!-- 페이지 이동 컨트롤러 -->
+    <div class="fixed bottom-6 right-6 z-40 bg-white/90 dark:bg-[#1C1B1A]/90 border-2 border-[#C0B7A8] dark:border-[#383430] backdrop-blur-md px-4 py-2 flex items-center gap-3 text-xs font-bold shadow-lg">
+        <span class="text-[#6B645A] dark:text-[#A39B8F]">위치:</span>
+        <span id="slide-tracker" class="text-[#C84A2B] dark:text-[#F06A4B]">01 / 05 단계</span>
+        <div class="flex gap-1 border-l border-[#C0B7A8] dark:border-[#383430] pl-2">
+            <button onclick="prevSlide()" aria-label="이전 섹션" class="p-1 hover:text-[#C84A2B] dark:hover:text-[#F06A4B]">▲</button>
+            <button onclick="nextSlide()" aria-label="다음 섹션" class="p-1 hover:text-[#C84A2B] dark:hover:text-[#F06A4B]">▼</button>
+        </div>
+    </div>
+
+    <!-- 푸터 -->
+    <footer class="border-t-2 border-[#C0B7A8] dark:border-[#383430] py-8 bg-white dark:bg-[#121110] transition-colors relative z-10">
+        <div class="max-w-6xl mx-auto px-6 md:px-12 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-semibold text-[#6B645A] dark:text-[#A39B8F]">
+            <p>&copy; 2026 양정인. All Rights Reserved.</p>
+            <a href="#" class="hover:text-[#C84A2B] dark:hover:text-[#F06A4B] transition-colors">
+                ▲ 맨 위로 이동
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        // 다크모드 설정
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        if (localStorage.getItem('color-theme') === 'light' || 
+            (!('color-theme' in localStorage) && !window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.remove('dark');
+            darkIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.add('dark');
+            lightIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            lightIcon.classList.toggle('hidden');
+            darkIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // 프로필 이미지 프리뷰
+        function previewProfileImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const imgElement = document.getElementById('profile-img');
+                const fallbackElement = document.getElementById('profile-fallback');
+                imgElement.src = URL.createObjectURL(file);
+                imgElement.style.display = 'block';
+                if (fallbackElement) fallbackElement.classList.add('hidden');
+            }
+        }
+
+        // 토스트 알림 기능
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.remove('opacity-0', 'translate-y-2');
+            }, 10);
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 300);
+            }, 3000);
+        }
+
+        // 이메일 클립보드 복사
+        function copyEmail() {
+            const el = document.createElement('textarea');
+            el.value = 'yjiji0926@gachon.ac.kr';
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast('가천대 이메일 주소가 복사되었습니다!');
+        }
+
+        // 프로젝트 데이터 모달
+        const projectData = {
+            nullo: {
+                title: "가상 브랜드 'Nullo' 마케팅 전략 & 광고 영상",
+                category: "브랜딩 / 전략 기획",
+                role: "총괄 기획, 마케팅 전략 수립 및 영상 연출",
+                summary: "가상 니치 브랜드 Nullo의 브랜드 아이덴티티 수립부터 타겟 커뮤니케이션 전략, 영상 스토리보드 구성 및 마케팅 캠페인 수립까지 전 과정을 주도한 프로젝트입니다.",
+                bullets: [
+                    "소비자 트렌드 분석을 기반으로 한 론칭 포지셔닝 프레임워크 수립",
+                    "브랜드 세계관을 전달하는 숏폼 & 미드폼 광고 영상 기획 및 연출",
+                    "포토샵을 활용한 비주얼 스토리보드 및 브랜딩 에셋 제작"
+                ]
+            },
+            youtube: {
+                title: "유튜브 채널 운영 ('핫식스자판기' & 'J:Sight')",
+                category: "미디어 / 콘텐츠 유통",
+                role: "팀 채널 프로듀싱 & 개인 채널 큐레이션",
+                summary: "트렌디한 정보 전달 채널 '핫식스자판기'와 마케터의 시선을 담아내는 'J:Sight'를 병행 운영하며 콘텐츠 기획, 제작, 유통 구조를 연구했습니다.",
+                bullets: [
+                    "팀 채널 '핫식스자판기': 정보 시각화 및 시청자 유지율 극대화를 위한 썸네일/구성안 기획",
+                    "개인 채널 'J:Sight': 브랜딩, 디자인, 마케팅 인사이트를 에디토리얼 비주얼로 전파",
+                    "유튜브 알고리즘 및 썸네일 카피라이팅 테스트 진행"
+                ]
+            },
+            commerce: {
+                title: "롯데홈쇼핑 엘라이브 대학대전 (P-프로젝트)",
+                category: "라이브 커머스 / 진행 중",
+                role: "라이브 커머스 기획자 & 셀링 스크립트 리드",
+                summary: "가천대학교 P-프로젝트 연계 실전 모바일 라이브 커머스로, 롯데홈쇼핑 '엘라이브' 채널을 통한 실제 상품 판매 및 마케팅 셀링 포인트 발굴 프로젝트입니다.",
+                bullets: [
+                    "모바일 라이브 방송 전용 소통 스크립트 및 프로모션 기획",
+                    "타겟 연령대 맞춤 비주얼 연출 및 라이브 커머스 혜택 구조 설계",
+                    "실시간 시청자 데이터 반응 분석 및 즉각적 세일즈 피드백 적용"
+                ]
+            }
+        };
+
+        function openProjectModal(key) {
+            const data = projectData[key];
+            if (!data) return;
+
+            const contentHTML = `
+                <div class="border-b-2 border-[#C0B7A8] dark:border-[#383430] pb-3">
+                    <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">${data.category}</span>
+                    <h2 class="text-2xl font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2] mt-1">${data.title}</h2>
+                </div>
+                
+                <div class="space-y-1.5">
+                    <span class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">담당 역할</span>
+                    <p class="text-sm font-bold text-[#1E1C1A] dark:text-white bg-[#F8F6F2] dark:bg-[#121110] p-3 border border-[#C0B7A8] dark:border-[#383430]">${data.role}</p>
+                </div>
+
+                <div class="space-y-1.5">
+                    <span class="text-xs font-bold text-[#6B645A] dark:text-[#A39B8F]">프로젝트 개요</span>
+                    <p class="text-xs text-[#3A3632] dark:text-[#D5CDC2] leading-relaxed font-normal">${data.summary}</p>
+                </div>
+
+                <div class="space-y-2 pt-3 border-t border-[#C0B7A8] dark:border-[#383430]">
+                    <span class="text-xs font-bold text-[#C84A2B] dark:text-[#F06A4B]">핵심 수행 성과</span>
+                    <ul class="space-y-2 text-xs text-[#3A3632] dark:text-[#D5CDC2]">
+                        ${data.bullets.map(b => `<li class="flex items-start gap-2"><span class="text-[#C84A2B] dark:text-[#F06A4B] font-bold">▸</span> ${b}</li>`).join('')}
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById('modal-content').innerHTML = contentHTML;
+            document.getElementById('project-modal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('project-modal').classList.add('hidden');
+        }
+
+        document.getElementById('project-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeProjectModal();
+        });
+
+        // 방명록 시스템
+        function getGuestbook() {
+            const data = localStorage.getItem('yj_guestbook');
+            return data ? JSON.parse(data) : [
+                { name: "가천대 팀원", msg: "정인 님, PPT 디자인과 기획서 정리가 너무 깔끔해서 발표 때 큰 도움이 되었습니다!", date: "2026.03.15" }
+            ];
+        }
+
+        function renderGuestbook() {
+            const list = getGuestbook();
+            const container = document.getElementById('guestbook-list');
+            const countEl = document.getElementById('guestbook-count');
+            countEl.textContent = `${list.length}개의 메시지`;
+
+            if (list.length === 0) {
+                container.innerHTML = `<p class="text-xs text-[#6B645A] col-span-2">첫 방명록 메시지를 남겨주세요.</p>`;
+                return;
+            }
+
+            container.innerHTML = list.map(item => `
+                <div class="editorial-deck-card p-4 space-y-2">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="font-extrabold text-[#1E1C1A] dark:text-[#F8F6F2]">${item.name}</span>
+                        <span class="text-[#6B645A] dark:text-[#A39B8F] text-[11px]">${item.date}</span>
+                    </div>
+                    <p class="text-xs text-[#3A3632] dark:text-[#D5CDC2] font-normal leading-relaxed">${item.msg}</p>
+                </div>
+            `).join('');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('name');
+            const msgInput = document.getElementById('message');
+
+            const name = nameInput.value.trim();
+            const msg = msgInput.value.trim();
+
+            if (!name || !msg) return;
+
+            const list = getGuestbook();
+            const today = new Date().toISOString().split('T')[0].replace(/-/g, '.');
+            list.unshift({ name, msg, date: today });
+
+            localStorage.setItem('yj_guestbook', JSON.stringify(list));
+            renderGuestbook();
+
+            nameInput.value = '';
+            document.getElementById('email').value = '';
+            msgInput.value = '';
+
+            showToast('방명록 메시지가 등록되었습니다!');
+        }
+
+        // 스크롤 트래커
+        const slides = document.querySelectorAll('.deck-section');
+        const tracker = document.getElementById('slide-tracker');
+        let currentSlideIndex = 0;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const slideNum = entry.target.getAttribute('data-slide');
+                    if (slideNum) {
+                        currentSlideIndex = parseInt(slideNum) - 1;
+                        tracker.textContent = `${slideNum.padStart(2, '0')} / 05 단계`;
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        slides.forEach(slide => observer.observe(slide));
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                slides[currentSlideIndex + 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                slides[currentSlideIndex - 1].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // 방명록 초기 실행
+        renderGuestbook();
+    </script>
+</body>
+</html>
